@@ -1,5 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
+
+import { toast } from 'react-toastify';
 function BorderRadius(props) {
     const [topLeft, setTopLeft] = useState(0);
     const [topRight, setTopRight] = useState(0);
@@ -53,14 +55,24 @@ function BorderRadius(props) {
     };
     const copyToClipboard = () => {
         navigator.clipboard.writeText(cssCode)
-          .then(() => alert('CSS code copied to clipboard!'))
-          .catch(() => alert('Failed to copy CSS code.'));
-      };
+            .then(() => toast.success('CSS code copied to clipboard!')) // Success toast
+            .catch(() => toast.error('Failed to copy CSS code.')); // Error toast
+    };
+    const codeStyle = { display: 'block', margin: '10px 0', fontSize: '16px' };
+    const buttonStyle = {
+        padding: '10px 20px',
+        fontSize: '0.8rem',
+        backgroundColor: 'lightblue',
+        color: '#1a1a1a',
+        border: 'none',
+        borderRadius: '5px',
+        cursor: 'pointer',
+    }
     const cssCode = `border-radius: ${topLeft}% ${topRight}% ${bottomRight}% ${bottomLeft}%;`;
     return (
         <>
             <div style={style}>
-                
+
                 <input
                     type='range'
                     min='0'
@@ -91,23 +103,15 @@ function BorderRadius(props) {
                     onChange={(e) => { setBottomRight(Number(e.target.value)) }}
                     style={bottomRightStyle} />
             </div>
-            <code style={{ display: 'block', margin: '10px 0', fontSize: '16px' }}>
-                    {cssCode}
-                </code>
-                <button
+            <code style={codeStyle}>
+                {cssCode}
+            </code>
+            <button
                 onClick={copyToClipboard}
-                    style={{
-                        padding: '10px 20px',
-                        fontSize: '0.8rem',
-                        backgroundColor: 'lightblue',
-                        color: '#fff',
-                        border: 'none',
-                        borderRadius: '5px',
-                        cursor: 'pointer',
-                    }}
-                >
-                    Copy CSS
-                </button>
+                style={buttonStyle}
+            >
+                Copy CSS
+            </button>
         </>
     )
 }
