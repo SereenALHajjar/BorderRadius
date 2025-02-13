@@ -4,3 +4,18 @@
   padding: 2rem;
   text-align: center;
 }
+.dimensions{
+  display: flex;
+  flex-direction: column;
+}
+.dimensions input{
+  color: #fff;
+  font-size: 0.9rem;
+  background-color: transparent;
+  box-sizing: border-box;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+  border-bottom: 2px solid lightblue;
+  margin:10px;
+}

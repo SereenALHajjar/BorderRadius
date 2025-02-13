@@ -9,8 +9,8 @@ function App() {
   return (
     <>
       <h1>Border Radius Preview</h1>
-      <BorderRadius width={width} height={height} />
-      <div>
+      <BorderRadius width={`${width}px`} height={`${height}px`} />
+      <div className='dimensions'>
         <label> width:
           <input type='number' placeholder='350' value={width} onChange={(e)=>{setWidth(e.target.value)}}></input>
         </label>
